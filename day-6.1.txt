@@ -1,0 +1,178 @@
+=== MY SQL DCL COMMANDS ===
+
+DATA CONTROL LANGUAGE:
+
+ It manages permissions and access control on database objects.
+
+THEY ARE 2 TYPES:
+1.GRANT
+2.REVOKE
+
+-->PRIVILEGES MEANS PERMISSIONS.
+GRANT HAVE 5 ACCESS:
+1.SELECT
+2.INSERT
+3.UPDATE
+4.DELETE
+5.
+
+
+How to create user creation?
+ syntax:
+    CREATE USER "USERNAME" IDENTIFIED BY "PASSWORD"
+
+GRANT SYNTAX:
+    GRANT PRIVILAGE ON TABLE_NAME TO "USERNAME"
+
+REVOKE SYNTAX:
+    REVOKE PRIVILAGE ON TABLE_NAME FROM "USERNAME"
+
+
+working of dcl commands in programming:
+
+mysql> use pfs6;
+Database changed
+mysql> create table students(
+    -> s_no int primary key,
+    -> s_name varchar(15),
+    -> s_email varchar(20));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> insert into students values(121,'harshini','harshini@gmail.com');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select*from students;
++------+----------+--------------------+
+| s_no | s_name   | s_email            |
++------+----------+--------------------+
+|  121 | harshini | harshini@gmail.com |
++------+----------+--------------------+
+1 row in set (0.00 sec)
+
+mysql> create user harshini identified by 'harshi123';
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create user harshi identified by 'harshini123';
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> grant select,insert,update on students to harshini;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> grant select,drop on students to harshi;
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> revoke insert,update on students from harshini;
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> revoke select on students from harshi;
+Query OK, 0 rows affected (0.03 sec)
+
+
+=== NEED OF AUTO INCREMENT====
+====CREATE TABLE FROM USING ANOTHER TABLE ===
+=== COMPUTED COLUMNS ===
+
+Execution:-
+
+mysql> create table products(
+    -> product_id int auto_increment primary key,
+    -> p_name varchar(20),
+    -> price decimal(10,2),
+    -> quantity int,
+    -> totalamount decimal(10,2)generated always as(price*quantity)stored
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> insert into products(p_name,price,quantity)values('mobile',19999,2);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select*from products;
++------------+--------+----------+----------+-------------+
+| product_id | p_name | price    | quantity | totalamount |
++------------+--------+----------+----------+-------------+
+|          1 | mobile | 19999.00 |        2 |    39998.00 |
++------------+--------+----------+----------+-------------+
+1 row in set (0.00 sec)
+
+mysql>mysql> use pfs6;
+Database changed
+
+mysql> create table students(
+    -> s_no int primary key,
+    -> s_name varchar(15),
+    -> s_email varchar(20));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> insert into students values(121,'harshini','harshini@gmail.com');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select*from students;
++------+----------+--------------------+
+| s_no | s_name   | s_email            |
++------+----------+--------------------+
+|  121 | harshini | harshini@gmail.com |
++------+----------+--------------------+
+1 row in set (0.00 sec)
+
+mysql> create user harshini identified by 'harshi123';
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create user harshi identified by 'harshini123';
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> grant select,insert,update on students to harshini;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> grant select,drop on students to harshi;
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> revoke insert,update on students from harshini;
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> revoke select on students from harshi;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table emp(
+    -> emp_id int auto_increment primary key,
+    -> e_name varchar(20),
+    -> e_sal decimal(10,2)
+    -> );
+Query OK, 0 rows affected (0.27 sec)
+
+mysql> insert into emp(e_name,e_sal)values('harshini',3000);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into emp(e_name,e_sal)values('santosh',10000);
+Query OK, 1 row affected (0.23 sec)
+
+mysql> select*from emp;
++--------+----------+----------+
+| emp_id | e_name   | e_sal    |
++--------+----------+----------+
+|      1 | harshini |  3000.00 |
+|      2 | santosh  | 10000.00 |
++--------+----------+----------+
+2 rows in set (0.00 sec)
+
+ mysql> drop table emp;
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> create table products(
+    -> product_id int auto_increment primary key,
+    -> p_name varchar(20),
+    -> price decimal(10,2),
+    -> quantity int,
+    -> totalamount decimal(10,2)generated always as(price*quantity)stored
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> insert into products(p_name,price,quantity)values('mobile',19999,2);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select*from products;
++------------+--------+----------+----------+-------------+
+| product_id | p_name | price    | quantity | totalamount |
++------------+--------+----------+----------+-------------+
+|          1 | mobile | 19999.00 |        2 |    39998.00 |
++------------+--------+----------+----------+-------------+
+1 row in set (0.00 sec)
